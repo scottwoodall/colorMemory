@@ -51,7 +51,7 @@ var GameStore = Fluxxor.createStore({
         }, this);
 
         this.cards = this.getCards();
-        this.previousCard = constants.SENTINAL;
+        this.previousCardIndex = constants.SENTINAL;
         this.score = 0;
 
         setTimeout(hideCards, this.cardFlipDelay);
@@ -81,9 +81,9 @@ var GameStore = Fluxxor.createStore({
 
     handleCardClick: function (cardIndex) {
         var card = this.cards[cardIndex];
-        var previousCard = this.cards[this.previousCard];
+        var previousCard = this.cards[this.previousCardIndex];
 
-        this.previousCard = cardIndex;
+        this.previousCardIndex = cardIndex;
 
         if ( ! card.hasBeenMatched) {
             this.score++;
@@ -92,13 +92,13 @@ var GameStore = Fluxxor.createStore({
         card.isColorFacingUp = true;
 
         // We don't care when someone clicks on a card that has already been matched
-        // or when we there isn't a previousCard to compare against.
+        // or when there isn't a previousCard to compare against.
         if ( ! card.hasBeenMatched && previousCard) {
             // They found a match
             if (card.color === previousCard.color) {
                 card.hasBeenMatched = card.isColorFacingUp = true;
                 previousCard.hasBeenMatched = previousCard.isColorFacingUp = true;
-                this.previousCard = constants.SENTINAL;
+                this.previousCardIndex = constants.SENTINAL;
             } else {
                 // modulo 0 indicates the user has two cards facing up.
                 if (this.score % 2 === 0) {
@@ -106,7 +106,7 @@ var GameStore = Fluxxor.createStore({
                     // need to reset previousCard to a sentinal value so the
                     // next card the user clicks on there is nothing to compare
                     // against.
-                    this.previousCard = constants.SENTINAL;
+                    this.previousCardIndex = constants.SENTINAL;
 
                     // We can't immediately hide the cards or else the user
                     // wouldn't get much of a chance to see that they picked an
