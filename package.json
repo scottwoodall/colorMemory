@@ -1,0 +1,29 @@
+{
+    "name": "colorMemory",
+    "description": "",
+    "repository": "",
+    "main": "src/main.js",
+    "readme": "",
+    "dependencies": {
+        "react": "~0.10",
+        "jquery": "~2.1.0",
+        "lodash": "~2.4.1"
+    },
+    "devDependencies": {
+        "browserify": "~2.36.0",
+        "envify": "~1.2.0",
+        "reactify": "~0.4.0",
+        "uglify-js": "~2.4.13",
+        "watchify": "~0.4.1"
+    },
+    "scripts": {
+        "start": "watchify . -o assets/js/bundle.js -v",
+        "build": "browserify . | uglifyjs -cm > assets/js/bundle.js"
+    },
+    "browserify": {
+        "transform": [
+            "reactify",
+            "envify"
+        ]
+    }
+}
