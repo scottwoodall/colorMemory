@@ -11,6 +11,10 @@ var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 var SideBar = React.createClass({
     mixins: [FluxChildMixin],
 
+    propTypes: {
+        game: React.PropTypes.object.isRequired
+    },
+
     handleNewGameClick: function (evnt) {
         this.getFlux().actions.newGame();
     },

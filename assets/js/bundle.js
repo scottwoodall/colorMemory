@@ -29670,7 +29670,12 @@ var React = require('react');
 var Card = require('./Card');
 
 
+// Creates an html <table> based on the dimensions of the board
 var Board = React.createClass({displayName: 'Board',
+    propTypes: {
+        game: React.PropTypes.object.isRequired
+    },
+
     getColumns: function (rowIndex) {
         var ret = [];
         var width = this.props.game.boardDimensions.width;
@@ -29849,6 +29854,10 @@ var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 var SideBar = React.createClass({displayName: 'SideBar',
     mixins: [FluxChildMixin],
 
+    propTypes: {
+        game: React.PropTypes.object.isRequired
+    },
+
     handleNewGameClick: function (evnt) {
         this.getFlux().actions.newGame();
     },
@@ -29927,10 +29936,12 @@ var GameStore = Fluxxor.createStore({
             width: 4 
         };
 
-        this.cardDelay = 500;
+        // number of seconds that the color of the card is shown before it's
+        // hidden
+        this.cardFlipDelay = 500;
 
         this.bindActions(
-            constants.CARD_CLICKED, Lodash.throttle(this.handleCardClick, this.cardDelay),
+            constants.CARD_CLICKED, Lodash.throttle(this.handleCardClick, this.cardFlipDelay),
             constants.NEW_GAME, this.handleNewGame
         );
 
@@ -29951,6 +29962,8 @@ var GameStore = Fluxxor.createStore({
     },
 
     handleNewGame: function () {
+        // All cards are facing up by default to give the user a quick glance at
+        // the board before they start playing and we then hide them.
         var hideCards = Lodash.bind(function () {
             Lodash.each(this.cards, function (card) {
                 card.isColorFacingUp = false;
@@ -29963,7 +29976,7 @@ var GameStore = Fluxxor.createStore({
         this.previousCard = constants.SENTINAL;
         this.score = 0;
 
-        setTimeout(hideCards, this.cardDelay);
+        setTimeout(hideCards, this.cardFlipDelay);
 
         this.emit('change');
     },
@@ -30026,7 +30039,7 @@ var GameStore = Fluxxor.createStore({
                         this.emit('change');
                     }, this);
 
-                    setTimeout(hideCards, this.cardDelay - 1);
+                    setTimeout(hideCards, this.cardFlipDelay - 1);
                 }
             }
         }

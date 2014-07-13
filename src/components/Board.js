@@ -8,7 +8,12 @@ var React = require('react');
 var Card = require('./Card');
 
 
+// Creates an html <table> based on the dimensions of the board
 var Board = React.createClass({
+    propTypes: {
+        game: React.PropTypes.object.isRequired
+    },
+
     getColumns: function (rowIndex) {
         var ret = [];
         var width = this.props.game.boardDimensions.width;
