@@ -4,7 +4,7 @@
 
 var Fluxxor = require('fluxxor');
 var Lodash = require('lodash');
-var React = require('react/addons');
+var React = require('react');
 var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 
 

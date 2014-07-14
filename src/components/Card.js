@@ -14,7 +14,7 @@ var Card = React.createClass({
         card: React.PropTypes.object.isRequired
     },
 
-    handleClick: function (evnt) {
+    handleClick: function () {
         this.getFlux().actions.cardClicked(this.props.index);
     },
 

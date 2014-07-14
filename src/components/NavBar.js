@@ -2,7 +2,7 @@
 /** components/NavBar.js **/
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 
 
 var NavBar = React.createClass({
@@ -15,11 +15,13 @@ var NavBar = React.createClass({
                             Color Memory
                         </a>
                     </div>
-                    <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li><a href="https://github.com/scottwoodall/colorMemory">Github</a></li>
-                        </ul>
-                    </div>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="https://github.com/scottwoodall/colorMemory">
+                                Github
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         );

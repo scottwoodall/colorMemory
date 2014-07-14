@@ -14,5 +14,4 @@ var flux = new Fluxxor.Flux(stores, actions);
 // Export React to the window object to make React DevTools available
 window.React = React;
 
-
 React.renderComponent(<Game flux={flux}/>, document.body);

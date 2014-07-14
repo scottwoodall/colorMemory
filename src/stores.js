@@ -40,8 +40,8 @@ var GameStore = Fluxxor.createStore({
     },
 
     handleNewGame: function () {
-        // All cards are facing up by default to give the user a quick glance at
-        // the board before they start playing and we then hide them.
+        // All card colors are facing up by default to give the user a quick
+        // glance at the board before they start playing and we then hide them.
         var hideCards = Lodash.bind(function () {
             Lodash.each(this.cards, function (card) {
                 card.isColorFacingUp = false;
@@ -96,8 +96,8 @@ var GameStore = Fluxxor.createStore({
         if ( ! card.hasBeenMatched && previousCard) {
             // They found a match
             if (card.color === previousCard.color) {
-                card.hasBeenMatched = card.isColorFacingUp = true;
-                previousCard.hasBeenMatched = previousCard.isColorFacingUp = true;
+                card.hasBeenMatched = true;
+                previousCard.hasBeenMatched = true;
                 this.previousCardIndex = constants.SENTINAL;
             } else {
                 // modulo 0 indicates the user has two cards facing up.

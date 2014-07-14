@@ -2,13 +2,12 @@
 /** components/Board.js **/
 'use strict';
 
-var Lodash = require('lodash');
 var React = require('react');
 
 var Card = require('./Card');
 
 
-// Creates an html <table> based on the dimensions of the board
+// Create an html <table> based on the dimensions of the board
 var Board = React.createClass({
     propTypes: {
         game: React.PropTypes.object.isRequired
@@ -20,7 +19,7 @@ var Board = React.createClass({
         var cardIndex = rowIndex * width;
         var columnIndex = cardIndex + width;
         var style = {
-            borderTop: 'none',
+            borderTop: 'none'
         };
 
         for (cardIndex; cardIndex < columnIndex; cardIndex++) {
@@ -40,10 +39,10 @@ var Board = React.createClass({
         var ret = [];
         var height = this.props.game.boardDimensions.height;
 
-        for (var i = 0; i < height; i++) {
+        for (var rowIndex = 0; rowIndex < height; rowIndex++) {
             ret.push(
-                <tr key={i}>
-                    {this.getColumns(i)}
+                <tr key={rowIndex}>
+                    {this.getColumns(rowIndex)}
                 </tr>
             );
         }

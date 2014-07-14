@@ -3,7 +3,7 @@
 'use strict';
 
 var Fluxxor = require('fluxxor');
-var React = require('react/addons');
+var React = require('react');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
@@ -24,7 +24,7 @@ var Game = React.createClass({
     render: function () {
         return (
             <div className="container">
-                <NavBar game={this.state.gameStore}/>
+                <NavBar/>
                 <div className="row">
                     <div className="col-sm-4 col-md-4 col-lg-4">
                         <SideBar game={this.state.gameStore}/>
