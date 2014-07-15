@@ -15,7 +15,7 @@ var SideBar = React.createClass({
         game: React.PropTypes.object.isRequired
     },
 
-    handleNewGameClick: function (evnt) {
+    handleNewGameClick: function () {
         this.getFlux().actions.newGame();
     },
 
