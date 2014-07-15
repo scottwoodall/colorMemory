@@ -4,6 +4,7 @@
 
 var React = require('react');
 
+var constants = require('../constants');
 var Card = require('./Card');
 
 
@@ -51,11 +52,33 @@ var Board = React.createClass({
     },
 
     render: function () {
+        var smileyCss = React.addons.classSet({ 
+            'fa': true,
+            'fa-5x': true,
+            'fa-meh-o': this.props.game.smileyFace === constants.MEH,
+            'fa-frown-o': this.props.game.smileyFace === constants.FROWN,
+            'fa-smile-o': this.props.game.smileyFace === constants.SMILE
+        });
+
+        var quoteCss = React.addons.classSet({
+            'hide': this.props.game.chuckNorrisQuote ? false : true
+        });
+
         return (
             <div className="well well-sm">
+                <div className="text-center">
+                    <i className={smileyCss}/>
+                </div>
+
                 <table className="table table-responsive table-condensed">
                     {this.getRows()}
                 </table>
+
+                <h3 className={quoteCss}>
+                    <i className="fa fa-quote-left"/>
+                    {this.props.game.chuckNorrisQuote}
+                    <i className="fa fa-quote-right"/>
+                </h3>
             </div>
         );
     }

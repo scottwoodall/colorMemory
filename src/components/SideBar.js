@@ -35,6 +35,7 @@ var SideBar = React.createClass({
                 <ol>
                     <li>Click a square and try to find the matching color.</li>
                     <li>Every click increases your score (lower is better).</li>
+                    <li>Correctly match two colors and you will be rewarded with a Chuck Norris quote.</li>
                 </ol>
             </div>
         );
