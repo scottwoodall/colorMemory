@@ -83,12 +83,11 @@ var GameStore = Fluxxor.createStore({
         var card = this.cards[cardIndex];
         var previousCard = this.cards[this.previousCardIndex];
 
-        this.previousCardIndex = cardIndex;
-
         if ( ! card.hasBeenMatched && this.previousCardIndex !== cardIndex) {
             this.score++;
         }
 
+        this.previousCardIndex = cardIndex;
         card.isColorFacingUp = true;
 
         // We don't care when someone clicks on a card that has already been
