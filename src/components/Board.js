@@ -2,7 +2,7 @@
 /** components/Board.js **/
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
 
 var constants = require('../constants');
 var Card = require('./Card');
