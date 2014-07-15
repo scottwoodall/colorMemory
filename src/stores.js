@@ -91,34 +91,33 @@ var GameStore = Fluxxor.createStore({
 
         card.isColorFacingUp = true;
 
-        // We don't care when someone clicks on a card that has already been matched
-        // or when there isn't a previousCard to compare against.
+        // We don't care when someone clicks on a card that has already been
+        // matched or when there isn't a previousCard to compare against.
         if ( ! card.hasBeenMatched && previousCard) {
             // They found a match
             if (card.color === previousCard.color) {
                 card.hasBeenMatched = true;
                 previousCard.hasBeenMatched = true;
                 this.previousCardIndex = constants.SENTINAL;
-            } else {
+            } else if (this.score % 2 === 0) {
                 // modulo 0 indicates the user has two cards facing up.
-                if (this.score % 2 === 0) {
-                    // At this point we know the two cards don't match so we
-                    // need to reset previousCard to a sentinal value so the
-                    // next card the user clicks on there is nothing to compare
-                    // against.
-                    this.previousCardIndex = constants.SENTINAL;
 
-                    // We can't immediately hide the cards or else the user
-                    // wouldn't get much of a chance to see that they picked an
-                    // incorrect one.
-                    var hideCards = Lodash.bind(function () {
-                        card.isColorFacingUp = false;
-                        previousCard.isColorFacingUp = false;
-                        this.emit('change');
-                    }, this);
+                // At this point we know the two cards don't match so we
+                // need to reset previousCard to a sentinal value so the
+                // next card the user clicks on there is nothing to compare
+                // against.
+                this.previousCardIndex = constants.SENTINAL;
 
-                    setTimeout(hideCards, this.cardFlipDelay - 1);
-                }
+                // We can't immediately hide the cards or else the user
+                // wouldn't get much of a chance to see that they picked an
+                // incorrect one.
+                var hideCards = Lodash.bind(function () {
+                    card.isColorFacingUp = false;
+                    previousCard.isColorFacingUp = false;
+                    this.emit('change');
+                }, this);
+
+                setTimeout(hideCards, this.cardFlipDelay);
             }
         }
 
