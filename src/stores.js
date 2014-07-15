@@ -2,7 +2,6 @@
 'use strict';
 
 var Fluxxor = require('fluxxor');
-var jQuery = require('jQuery');
 var Lodash = require('lodash');
 
 var constants = require('./constants');
@@ -33,7 +32,6 @@ var GameStore = Fluxxor.createStore({
         return {
             boardDimensions: this.boardDimensions,
             cards: this.cards,
-            chuckNorrisQuote: this.chuckNorrisQuote,
             smileyFace: this.smileyFace,
             score: this.score
         };
@@ -56,31 +54,11 @@ var GameStore = Fluxxor.createStore({
         }, this);
 
         this.cards = this.getCards();
-        this.getChuckNorrisQuotes();
         this.previousCardIndex = constants.SENTINAL;
         this.score = 0;
         this.smileyFace = constants.MEH,
         setTimeout(hideCards, this.cardFlipDelay);
         this.emit('change');
-    },
-
-    getChuckNorrisQuotes: function () {
-        /*
-         * "A side project is not complete until it has Chuck Norris"
-         *                                            -Morgan Freeman
-         */
-        var doneCallback = Lodash.bind(function (data, textStatus, response) {
-            if (response.status === 200) {
-                this.chuckNorrisQuotes = Lodash.pluck(response.responseJSON.value, 'joke');
-            }
-        }, this);
-
-        var request = jQuery.ajax({
-            url: 'http://api.icndb.com/jokes/random/100',
-            dataType: 'jsonp'
-        });
-
-        request.done(doneCallback);
     },
 
     getCards: function () {
@@ -113,7 +91,6 @@ var GameStore = Fluxxor.createStore({
 
         this.smileyFace = constants.MEH;
         this.previousCardIndex = cardIndex;
-        this.chuckNorrisQuote = null;
         card.isColorFacingUp = true;
 
         // We don't care when someone clicks on a card that has already been
@@ -125,7 +102,6 @@ var GameStore = Fluxxor.createStore({
                 previousCard.hasBeenMatched = true;
                 this.previousCardIndex = constants.SENTINAL;
                 this.smileyFace = constants.SMILE;
-                this.chuckNorrisQuote = Lodash.sample(this.chuckNorrisQuotes, 1);
             } else if (this.score % 2 === 0) {
                 // modulo 0 indicates the user has two cards facing up.
 

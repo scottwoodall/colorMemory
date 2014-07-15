@@ -60,10 +60,6 @@ var Board = React.createClass({
             'fa-smile-o': this.props.game.smileyFace === constants.SMILE
         });
 
-        var quoteCss = React.addons.classSet({
-            'hide': this.props.game.chuckNorrisQuote ? false : true
-        });
-
         return (
             <div className="well well-sm">
                 <div className="text-center">
@@ -73,12 +69,6 @@ var Board = React.createClass({
                 <table className="table table-responsive table-condensed">
                     {this.getRows()}
                 </table>
-
-                <h3 className={quoteCss}>
-                    <i className="fa fa-quote-left"/>
-                    {this.props.game.chuckNorrisQuote}
-                    <i className="fa fa-quote-right"/>
-                </h3>
             </div>
         );
     }
