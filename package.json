@@ -16,8 +16,8 @@
         "watchify": "~0.4.1"
     },
     "scripts": {
-        "start": "watchify . -o assets/js/bundle.js -v",
-        "build": "browserify . | uglifyjs -cm > assets/js/bundle.js"
+        "start": "watchify . -o static/js/bundle.js -v",
+        "build": "browserify . | uglifyjs -cm > static/js/bundle.js"
     },
     "browserify": {
         "transform": [
