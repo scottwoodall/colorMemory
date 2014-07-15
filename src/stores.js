@@ -76,7 +76,7 @@ var GameStore = Fluxxor.createStore({
         }, this);
 
         var request = jQuery.ajax({
-            url: 'http://api.icndb.com/jokes/random/40',
+            url: 'http://api.icndb.com/jokes/random/100',
             dataType: 'jsonp'
         });
 
