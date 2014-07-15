@@ -19,6 +19,8 @@ var GameStore = Fluxxor.createStore({
         this.cardFlipDelay = 500;
 
         this.bindActions(
+            // Throttled so a click happy user can't mess with the state of
+            // card/previousCard checks in .handleCardClick().
             constants.CARD_CLICKED, Lodash.throttle(this.handleCardClick, this.cardFlipDelay),
             constants.NEW_GAME, this.handleNewGame
         );
