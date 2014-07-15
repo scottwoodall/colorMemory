@@ -85,7 +85,7 @@ var GameStore = Fluxxor.createStore({
 
         this.previousCardIndex = cardIndex;
 
-        if ( ! card.hasBeenMatched) {
+        if ( ! card.hasBeenMatched && this.previousCardIndex !== cardIndex) {
             this.score++;
         }
 
