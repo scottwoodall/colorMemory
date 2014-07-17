@@ -20,8 +20,8 @@ var Card = React.createClass({
 
     render: function () {
         var style = {
-            height: '140px',
-            width: '140px'
+            height: '130px',
+            width: '130px'
         };
 
         if (this.props.card.isColorFacingUp) {

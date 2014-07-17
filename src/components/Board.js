@@ -54,7 +54,7 @@ var Board = React.createClass({
     render: function () {
         var smileyCss = React.addons.classSet({ 
             'fa': true,
-            'fa-5x': true,
+            'fa-4x': true,
             'fa-meh-o': this.props.game.smileyFace === constants.MEH,
             'fa-frown-o': this.props.game.smileyFace === constants.FROWN,
             'fa-smile-o': this.props.game.smileyFace === constants.SMILE
